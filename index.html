@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deejay VAX - Press Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(180, 150, 100, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+        
+        .logo-container {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-img {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+            margin: 0 auto;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #b8956a;
+            box-shadow: 0 0 40px rgba(184, 149, 106, 0.4);
+            margin: 0 auto 30px;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(90deg, #b8956a, #d4af7a, #b8956a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        
+        .subtitle {
+            font-size: 1.4em;
+            color: #b8956a;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+        
+        .tagline {
+            font-size: 1em;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Section Styles */
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(184, 149, 106, 0.2);
+        }
+        
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #b8956a;
+            border-bottom: 2px solid #b8956a;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Biography */
+        .bio-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #ddd;
+        }
+        
+        /* Genres */
+        .genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .genre-tag {
+            background: linear-gradient(135deg, #b8956a, #8a7355);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: transform 0.2s ease;
+            cursor: default;
+            color: #fff;
+        }
+        
+        .genre-tag:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Experience */
+        .experience-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .experience-item {
+            background: rgba(184, 149, 106, 0.1);
+            padding: 15px 20px;
+            border-left: 4px solid #b8956a;
+            border-radius: 8px;
+            font-size: 1.05em;
+        }
+        
+        /* Mixes Grid */
+        .mixes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .mix-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(184, 149, 106, 0.3);
+        }
+        
+        .mix-card:hover {
+            transform: translateY(-8px);
+            border-color: #b8956a;
+            box-shadow: 0 8px 25px rgba(184, 149, 106, 0.3);
+        }
+        
+        .mix-card h3 {
+            color: #d4af7a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .mix-card p {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .mix-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #b8956a, #8a7355);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        
+        .mix-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .social-btn {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            border: 2px solid #b8956a;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-btn:hover {
+            background: linear-gradient(90deg, #b8956a, #8a7355);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(184, 149, 106, 0.4);
+        }
+        
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            font-size: 1.2em;
+            padding: 20px;
+            background: rgba(184, 149, 106, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .contact-info a {
+            color: #d4af7a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .contact-info a:hover {
+            color: #b8956a;
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(184, 149, 106, 0.2), rgba(138, 115, 85, 0.2));
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(184, 149, 106, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #d4af7a;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .mixes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-img {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="logo-container">
+            <img src="images/Profile_Foto.png" alt="Deejay VAX Foto" class="logo-img">
+            </div>
+            <h1>Deejay VAX</h1>
+            <p class="subtitle">DJ • Producer</p>
+            <p class="tagline">Since 1996 • Paris • Heidelberg • Basel</p>
+        </div>
+
+        <!-- Biography -->
+        <div class="section">
+            <h2>Biography</h2>
+            <p class="bio-text">
+                Professional DJ since 1996, Deejay VAX started at the age of 16 in Parisian clubs with funk, disco, R&B, and house music. He organized numerous parties in France and was a resident in several clubs in Paris, including mixing at the Gay Pride in Paris. After his time in Germany at Heidelberg where he performed in different clubs, he settled near Basel over 15 years ago, where he continues to produce and mix on different radios, clubs, bars. He has notably performed at Extrema Outdoor in Belgium and Nature One Camp. He enjoys mixing different genres including Afro, Deep House, Tech House, Techno.
+            </p>
+        </div>
+
+        <!-- Genres -->
+        <div class="section">
+            <h2>Music Styles</h2>
+            <div class="genres">
+                <span class="genre-tag">Afro House</span>
+                <span class="genre-tag">Deep House</span>
+                <span class="genre-tag">Tech House</span>
+                <span class="genre-tag">Melodic Techno</span>
+                <span class="genre-tag">Techno</span>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+            <h2>Experience & References</h2>
+            <div class="experience-list">
+                <div class="experience-item">🎪 Festivals: Extrema Outdoor (Belgium), Nature One Camp</div>
+                <div class="experience-item">🏙️ Clubs: Resident in various clubs in Paris, Heidelberg, and Basel region</div>
+                <div class="experience-item">🎉 Events: Gay Pride Paris, Party organizer in France</div>
+                <div class="experience-item">📻 Radio: Regular mixes on different radio stations</div>
+                <div class="experience-item">🎵 Production: Afro House tracks under the aliases Joy Bert</div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="section">
+            <h2>By The Numbers</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">29+</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Tracks & Mixes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Countries (FR, DE, CH)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Mixes -->
+        <div class="section">
+            <h2>Latest Mixes</h2>
+            <div class="mixes-grid">
+                <div class="mix-card">
+                    <h3>Melodic Dome Vol.02</h3>
+                    <p>Melodic Techno</p>
+                    <a href="https://on.soundcloud.com/X64KoItlGEE5er3SJz" target="_blank" class="mix-btn">Listen</a>
+                </div>
+                <div class="mix-card">
+                    <h3>Your Freedom</h3>
+                    <p>Kincaid & Joy Bert</p>
+                    <a href="https://on.soundcloud.com/zvRLYs4vTK4eYr5lZg" target="_blank" class="mix-btn">Listen</a>
+                </div>
+                <div class="mix-card">
+                    <h3>Peak Time Energy Vol. 06</h3>
+                    <p>Techno</p>
+                    <a href="https://on.soundcloud.com/2sbwPkq27SdcxyrNUr" target="_blank" class="mix-btn">Listen</a>
+                </div>
+                <div class="mix-card">
+                    <h3>Jack in the House Vol. 10</h3>
+                    <p>Afro House</p>
+                    <a href="https://on.soundcloud.com/aPmoxCBgWbXwD58908" target="_blank" class="mix-btn">Listen</a>
+                </div>
+                <div class="mix-card">
+                    <h3>Mystic Frequencies Vol. 2</h3>
+                    <p>Psytrance</p>
+                    <a href="https://soundcloud.com/deejayvax/mystic-frequencies-vol-2" target="_blank" class="mix-btn">Listen</a>
+                </div>
+                <div class="mix-card">
+                    <h3>Sunrise</h3>
+                    <p>Original Production</p>
+                    <a href="https://on.soundcloud.com/LOfN9szEy0JpIf6u7x" target="_blank" class="mix-btn">Listen</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="section">
+            <h2>Social Media & Platforms</h2>
+            <div class="social-links">
+                <a href="https://soundcloud.com/deejayvax" target="_blank" class="social-btn">
+                    🎵 SoundCloud
+                </a>
+                <a href="https://instagram.com/deejayvax" target="_blank" class="social-btn">
+                    📸 Instagram
+                </a>
+                <a href="https://tiktok.com/@deejayvax909" target="_blank" class="social-btn">
+                    🎬 TikTok
+                </a>
+                <a href="https://www.mixcloud.com/DEEJAYVAX/" target="_blank" class="social-btn">
+                    🎧 Mixcloud
+                </a>
+                <a href="https://joybert.bandcamp.com/" target="_blank" class="social-btn">
+                    💿 Bandcamp
+                </a>
+                <a href="https://www.youtube.com/@deejayvax" target="_blank" class="social-btn">
+                    ▶️ YouTube
+                </a>
+                <a href="https://www.twitch.tv/deejayvax" target="_blank" class="social-btn">
+                    🎬 Twitch
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>📧 Email: <a href="mailto:deejayvax909@gmail.com">deejayvax909@gmail.com</a></p>
+                <p>📍 Location: Rheinfelden (Basel Region)</p>
+                <p>🔗 Press Kit: <a href="https://linktr.ee/DEEJAYVAX" target="_blank">linktr.ee/DEEJAYVAX</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
