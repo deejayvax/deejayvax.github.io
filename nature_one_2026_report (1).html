@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nature One 2026 — DeeJay Vax Setup Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111318;
+    --card: #181c24;
+    --border: #252a35;
+    --accent: #00e5ff;
+    --accent2: #ff3d6b;
+    --accent3: #ffe020;
+    --green: #00e676;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    gap: 12px;
+  }
+
+  /* HEADER */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+    gap: 16px;
+  }
+
+  .header-left {}
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .title span { color: var(--accent); }
+
+  .subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .header-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .badge-cyan { background: rgba(0,229,255,0.12); color: var(--accent); border: 1px solid rgba(0,229,255,0.3); }
+  .badge-pink { background: rgba(255,61,107,0.12); color: var(--accent2); border: 1px solid rgba(255,61,107,0.3); }
+  .badge-yellow { background: rgba(255,224,32,0.12); color: var(--accent3); border: 1px solid rgba(255,224,32,0.3); }
+  .badge-green { background: rgba(0,230,118,0.12); color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
+
+  /* GRID LAYOUTS */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .card-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* EQUIPMENT TABLE */
+  .eq-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    gap: 8px;
+  }
+
+  .eq-row:last-child { border-bottom: none; }
+
+  .eq-name { font-size: 12px; color: var(--text); font-weight: 500; }
+  .eq-detail { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+  .eq-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .tag-aktiv { background: rgba(0,229,255,0.1); color: var(--accent); }
+  .tag-passiv { background: rgba(107,114,128,0.2); color: var(--muted); }
+  .tag-ok { background: rgba(0,230,118,0.1); color: var(--green); }
+  .tag-warn { background: rgba(255,224,32,0.1); color: var(--accent3); }
+
+  /* SIGNAL CHAIN */
+  .chain {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .chain-item {
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .chain-item.sub {
+    background: rgba(255,224,32,0.08);
+    border-color: rgba(255,224,32,0.2);
+    color: var(--accent3);
+  }
+
+  .chain-arrow {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  /* POWER TABLE */
+  .power-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: center;
+  }
+
+  .power-row:last-child { border-bottom: none; }
+  .power-name { font-size: 11px; }
+  .power-circuit { font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace; }
+  .power-watt { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); text-align: right; }
+
+  /* WEIGHT */
+  .weight-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: center;
+  }
+  .weight-row:last-child { border-bottom: none; padding-top: 8px; border-top: 1px solid var(--border); margin-top: 4px; }
+  .weight-name { font-size: 11px; }
+  .weight-loc { font-size: 10px; color: var(--muted); font-family: 'Space Mono', monospace; }
+  .weight-kg { font-family: 'Space Mono', monospace; font-size: 11px; text-align: right; }
+
+  /* BIG STATS */
+  .stat-block {
+    text-align: center;
+    padding: 10px 8px;
+  }
+
+  .stat-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-value.green { color: var(--green); }
+  .stat-value.cyan { color: var(--accent); }
+  .stat-value.yellow { color: var(--accent3); }
+
+  .stat-label {
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* FOOTER */
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-left {
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .footer-right {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+  }
+
+  /* ACCENT BAR */
+  .accent-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--accent2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .todo-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 11px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .todo-item:last-child { border-bottom: none; }
+
+  .todo-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-green { background: var(--green); }
+  .dot-yellow { background: var(--accent3); }
+  .dot-red { background: var(--accent2); }
+
+  .span-2 { grid-column: span 2; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="accent-bar"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Global DJ Event · in Kooperation mit Unser Beatz</div>
+      <div class="title">Nature One <span>2026</span></div>
+      <div class="subtitle">DeeJay Vax · Camping Stage · 30. Juli 2026 · Setup & Technik Report</div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-cyan">Camping Stage</span>
+      <span class="badge badge-pink">30.07.2026</span>
+      <span class="badge badge-yellow">Full PA Setup</span>
+    </div>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="grid-4">
+    <div class="card">
+      <div class="stat-block">
+        <div class="stat-value cyan">5.6kW</div>
+        <div class="stat-label">Aggregat Leistung</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stat-block">
+        <div class="stat-value yellow">~1875W</div>
+        <div class="stat-label">PA Verbrauch</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stat-block">
+        <div class="stat-value green">33%</div>
+        <div class="stat-label">Auslastung Aggregat</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stat-block">
+        <div class="stat-value green">282kg</div>
+        <div class="stat-label">Reserve Gespann</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPMENT + SIGNAL CHAIN -->
+  <div class="grid-2">
+
+    <!-- EQUIPMENT -->
+    <div class="card">
+      <div class="card-title">Equipment Liste</div>
+
+      <div class="section-label">Sound — Tops</div>
+      <div class="eq-row">
+        <div><div class="eq-name">HK Audio PR:O 15 X (2×)</div><div class="eq-detail">400W RMS · 8Ω · 15" PA Cabinet</div></div>
+        <span class="eq-tag tag-passiv">Passiv</span>
+      </div>
+
+      <div class="section-label" style="margin-top:10px">Sound — Sub</div>
+      <div class="eq-row">
+        <div><div class="eq-name">Jobst JB SUB118</div><div class="eq-detail">Eminence Sigma Pro 18" · Superlux SF12AS 500W eingebaut · XLR · Satellite Out</div></div>
+        <span class="eq-tag tag-aktiv">Aktiv</span>
+      </div>
+
+      <div class="section-label" style="margin-top:10px">Verstärker & Processing</div>
+      <div class="eq-row">
+        <div><div class="eq-name">t.amp TA2400 MKII</div><div class="eq-detail">2× 760W @ 8Ω · Gain max 60%</div></div>
+        <span class="eq-tag tag-ok">⚠ 60%</span>
+      </div>
+      <div class="eq-row">
+        <div><div class="eq-name">dbx 266XL</div><div class="eq-detail">2-Kanal Kompressor/Gate · Stereo Couple</div></div>
+        <span class="eq-tag tag-passiv">Rack</span>
+      </div>
+
+      <div class="section-label" style="margin-top:10px">DJ Equipment</div>
+      <div class="eq-row">
+        <div><div class="eq-name">Pioneer CDJ-2000NXS2 (2×)</div><div class="eq-detail">Pro DJ Link · USB · LAN</div></div>
+        <span class="eq-tag tag-ok">Flightcase</span>
+      </div>
+      <div class="eq-row">
+        <div><div class="eq-name">Allen & Heath Xone:92</div><div class="eq-detail">6-Kanal Analog Mixer · 4-Band EQ</div></div>
+        <span class="eq-tag tag-ok">Flightcase</span>
+      </div>
+
+      <div class="section-label" style="margin-top:10px">Strom</div>
+      <div class="eq-row">
+        <div><div class="eq-name">Aggregat OFB 8500-3 D-ES</div><div class="eq-detail">5.6 kW · Diesel · E-Starter · 3-phasig</div></div>
+        <span class="eq-tag tag-ok">110 kg</span>
+      </div>
+      <div class="eq-row">
+        <div><div class="eq-name">Brennenstuhl BSV 3-FI</div><div class="eq-detail">FI 30mA · 5× Schuko · CEE 400V · IP44</div></div>
+        <span class="eq-tag tag-ok">Made in DE</span>
+      </div>
+      <div class="eq-row">
+        <div><div class="eq-name">Bachmann 333-402</div><div class="eq-detail">6× Schuko · Rack · Überspannungsschutz</div></div>
+        <span class="eq-tag tag-passiv">Rack</span>
+      </div>
+    </div>
+
+    <!-- SIGNAL CHAIN + STROM + GEWICHT -->
+    <div style="display:grid;gap:10px;">
+
+      <!-- SIGNAL CHAIN -->
+      <div class="card">
+        <div class="card-title">Signalkette</div>
+        <div class="section-label">Tops</div>
+        <div class="chain">
+          <div class="chain-item">CDJ-2000 (2×)</div>
+          <span class="chain-arrow">→</span>
+          <div class="chain-item">Xone:92</div>
+          <span class="chain-arrow">→</span>
+          <div class="chain-item">dbx 266XL</div>
+          <span class="chain-arrow">→</span>
+          <div class="chain-item">t.amp TA2400</div>
+          <span class="chain-arrow">→</span>
+          <div class="chain-item">HK Tops</div>
+        </div>
+        <div class="section-label" style="margin-top:10px">Sub (unabhängig)</div>
+        <div class="chain">
+          <div class="chain-item sub">Xone:92 Booth</div>
+          <span class="chain-arrow">→</span>
+          <div class="chain-item sub">Jobst SUB118</div>
+          <span class="chain-arrow">→</span>
+          <div class="chain-item sub">Superlux SF12AS (eingebaut)</div>
+        </div>
+      </div>
+
+      <!-- STROMPLAN -->
+      <div class="card">
+        <div class="card-title">Stromplan — 2 Kreise</div>
+        <div class="power-row">
+          <div class="power-name">t.amp TA2400</div>
+          <div class="power-circuit">ROT CEE→BSV3-FI</div>
+          <div class="power-watt">~800W</div>
+        </div>
+        <div class="power-row">
+          <div class="power-name">Superlux SF12AS</div>
+          <div class="power-circuit">ROT CEE→BSV3-FI</div>
+          <div class="power-watt">~300W</div>
+        </div>
+        <div class="power-row">
+          <div class="power-name">Xone:92 + dbx + CDJs</div>
+          <div class="power-circuit">BLAU→Wohnwagen</div>
+          <div class="power-watt">~215W</div>
+        </div>
+        <div class="power-row">
+          <div class="power-name">Licht + Laser + Monitore</div>
+          <div class="power-circuit">BLAU→Wohnwagen</div>
+          <div class="power-watt">~410W</div>
+        </div>
+        <div class="power-row" style="border-top:1px solid var(--border);margin-top:4px;padding-top:8px;">
+          <div class="power-name" style="font-weight:600;color:var(--white)">Total</div>
+          <div class="power-circuit" style="color:var(--green)">33% Auslastung</div>
+          <div class="power-watt" style="color:var(--green)">~1875W</div>
+        </div>
+      </div>
+
+      <!-- GEWICHT -->
+      <div class="card">
+        <div class="card-title">Gewichtsplan — Gespann</div>
+        <div class="weight-row">
+          <div class="weight-name">Gespann leer (gewogen)</div>
+          <div class="weight-loc">TOTAL</div>
+          <div class="weight-kg" style="color:var(--muted)">2540 kg</div>
+        </div>
+        <div class="weight-row">
+          <div class="weight-name">3 Personen + Gepäck</div>
+          <div class="weight-loc">TOURAN</div>
+          <div class="weight-kg">315 kg</div>
+        </div>
+        <div class="weight-row">
+          <div class="weight-name">Aggregat + Sub + CDJs + Mixer</div>
+          <div class="weight-loc">TOURAN</div>
+          <div class="weight-kg">190 kg</div>
+        </div>
+        <div class="weight-row">
+          <div class="weight-name">Tops + t.amp + Zelt + Kabel</div>
+          <div class="weight-loc">WOHNWAGEN</div>
+          <div class="weight-kg">143 kg</div>
+        </div>
+        <div class="weight-row">
+          <div class="weight-name" style="font-weight:600;color:var(--white)">Gespann beladen</div>
+          <div class="weight-loc" style="color:var(--green)">✓ OK</div>
+          <div class="weight-kg" style="color:var(--green)">3218 kg</div>
+        </div>
+        <div style="margin-top:8px;padding:6px 8px;background:rgba(0,230,118,0.08);border:1px solid rgba(0,230,118,0.2);border-radius:5px;font-size:10px;color:var(--green)">
+          ✓ 282 kg Reserve · Touran F.1 = 2100 kg · Gespann max 3500 kg
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="card">
+    <div class="card-title">Checkliste vor Abfahrt</div>
+    <div class="grid-3">
+      <div>
+        <div class="section-label">Strom ✓</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Brennenstuhl BSV 3-FI</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Bachmann 333-402</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>CEE rot Verlängerung 15–20m</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Adapter Schuko → CEE blau</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Aggregat Diesel voll tanken</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Aggregat Probelauf</div>
+      </div>
+      <div>
+        <div class="section-label">Sound ✓</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Speakon Kabel (2× 15m)</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>XLR Kabel (6×)</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>t.amp Gain auf 60% markiert</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>dbx Stereo Couple aktiv</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Jobst Sub getestet</div>
+        <div class="todo-item"><div class="todo-dot dot-yellow"></div>Ersatz-XLR Kabel dabei</div>
+      </div>
+      <div>
+        <div class="section-label">Allgemein</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Gaffer-Tape</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Werkzeug / Multitools</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Taschenlampe</div>
+        <div class="todo-item"><div class="todo-dot dot-green"></div>Laptop geladen</div>
+        <div class="todo-item"><div class="todo-dot dot-yellow"></div>USB Sticks (Musik Backup)</div>
+        <div class="todo-item"><div class="todo-dot dot-yellow"></div>Reifendruck Touran + WW</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      DeeJay Vax · Global DJ Event · in Kooperation mit Unser Beatz · Nature One 2026 Camping Stage
+    </div>
+    <div class="footer-right">30.07.2026</div>
+  </div>
+
+</div>
+</body>
+</html>
